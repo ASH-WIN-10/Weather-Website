@@ -56,3 +56,18 @@ input {
 	padding: 6px 10px;
 	font-size: 1rem;
 }
+
+#content {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	font-weight: 600;
+
+	:first-child {
+		font-size: 1.45rem;
+	}
+
+	:nth-child(2) {
+		font-size: 1.9rem;
+	}
+}
