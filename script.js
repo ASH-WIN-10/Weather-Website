@@ -7,10 +7,21 @@ async function getBgImage(weatherCondition) {
 
 	const bodyElem = document.querySelector("body");
 	const imageUrl = imageData.results[0].urls.full;
-	bodyElem.style.backgroundImage = `url(${imageUrl})`;
+
+	const image = new Image();
+	image.src = imageUrl;
+	image.addEventListener("load", () => {
+		bodyElem.style.backgroundImage = `url(${imageUrl})`;
+		// Hide the loader
+		const loader = document.querySelector(".loader-wrapper");
+		loader.classList.remove("display");
+	});
 }
 
 async function getWeatherData(placeName) {
+	const loader = document.querySelector(".loader-wrapper");
+	loader.classList.add("display");
+
 	const response = await fetch(
 		`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${placeName}?unitGroup=metric&key=JPPTP2Z7DMHG2KAFAX5B7745S&contentType=json`,
 		{ method: "GET", mode: "cors" }
@@ -37,7 +48,7 @@ function searchWeather(e) {
 }
 
 const weatherForm = document.querySelector("form");
-weatherForm.addEventListener("click", searchWeather);
+weatherForm.addEventListener("submit", searchWeather);
 
 // Show weather for Jaipur
 getWeatherData("Jaipur");

@@ -101,8 +101,9 @@ input {
 
 /* loader */
 .loader-wrapper {
-	position: absolute;
+	visibility: hidden;
 
+	position: absolute;
 	height: 100%;
 	width: 100%;
 	display: grid;
@@ -118,7 +119,8 @@ input {
 	width: 42px;
 	border: 6px solid #9ca3af;
 	border-top-color: #2563eb;
-	animation: loader 2s infinite;
+
+	animation: loader 1s infinite linear;
 }
 
 @keyframes loader {
@@ -128,4 +130,8 @@ input {
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+.display {
+	visibility: visible !important;
 }
